@@ -10,4 +10,4 @@ This project is made in the context of a school project by a group of 4 :
 
 -Fedi Ghalloussi -> Github : FediGhalloussi, LinkedIn : https://www.linkedin.com/in/fedi-ghalloussi-a4a17b230/
 
--Merwan Hammaoui -> Github :  ,LinkedIn : https://www.linkedin.com/in/merwan-hammaoui-7b8633240/
+-Merwan Hammaoui -> Github : mwn27 ,LinkedIn : https://www.linkedin.com/in/merwan-hammaoui-7b8633240/
