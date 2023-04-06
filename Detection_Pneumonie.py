@@ -238,7 +238,7 @@ mlp_metrics = {'Accuracy': accuracy_score(y_test, max_indices),
 print(mlp_metrics)
 
 
-# In[55]:
+# In[94]:
 
 
 ## Modèle MLP 2
@@ -254,7 +254,7 @@ for i in  np.arange(0,10,0.5) :
       Dense(2, activation='softmax')
     ])
 
-    mnist_model.compile(optimizer=optimizers.RMSprop(1e-3),
+    mnist_model.compile(optimizer=RMSprop(1e-3),
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
 
@@ -277,7 +277,9 @@ plt.show()
 # In[69]:
 
 
-# Création d'un modèle MLP simple
+## Modèle MLP 3
+
+# Création d'un modèle MLP simple : 
 model = Sequential([
   Flatten(input_shape=(128, 128)),
   Dense(128, activation='relu'),
@@ -301,6 +303,40 @@ max_indices = np.argmax(mnist_model.predict(x_test), axis=1)
 mlp_metrics = {'Accuracy': accuracy_score(y_test, max_indices),
               'Precision': precision_score(y_test, max_indices, average='weighted'),
               'Recall': recall_score(y_test, max_indices, average='weighted')}
+
+
+# In[ ]:
+
+
+## Influence du nombre d'epoch pour le modèle MLP 3, meme démarche pour les autres modèle
+# Création d'un modèle MLP simple
+model = Sequential([
+  Flatten(input_shape=(128, 128)),
+  Dense(128, activation='relu'),
+    #Dropout(0.1),
+    Dense(64, activation='relu'),
+  Dense(2, activation='sigmoid') ## Quand on utilise softmax accurancy sur le test desend à 30%
+])
+
+# Compilation du modèle
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+
+Lepoch =[]
+Lacc = []
+
+for i in np.arange(1,30,2):
+
+    # Entraînement du modèle
+    model.fit(x_train, y_train, epochs=i, validation_data=(x_test, y_test))
+    a = model.evaluate(x_test, y_test)
+    Lepoch.append(i)
+    Lacc.append(a[1])
+    
+plt.plot(Lepoch,Lacc)
+plt.show()
 
 
 # ## Modèle CNN
